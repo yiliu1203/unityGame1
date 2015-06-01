@@ -1,0 +1,13 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\camaTrack.cs">
+    <Files>
+      <File FileName="..\..\..\unitybook\prj\animate_test\Assets\Mecanim Warrior Anim Free\Script\PlayGUI.cs" Line="18" Column="4" />
+      <File FileName="Assets\script\camaTrack.cs" Line="17" Column="2" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
