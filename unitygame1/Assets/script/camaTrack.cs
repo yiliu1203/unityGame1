@@ -5,6 +5,7 @@ public class camaTrack : MonoBehaviour {
 	public Transform [] transobj;
 	private Animator [] animator;
 	public float speed=10;
+
 	// Use this for initialization
 	void Start () {
 		animator = new Animator[transobj.Length];
@@ -15,13 +16,14 @@ public class camaTrack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float tranX = Input.GetAxis ("Vertical") * speed;
-		float tranZ = Input.GetAxis ("Horizontal") * speed;
-		tranX *= Time.deltaTime;
-		tranZ *= Time.deltaTime;
-		for (int i=0; i<transobj.Length; i++) {
-			transobj[i].transform.Translate(new Vector3(tranX,0,tranZ));
-		}
-	
+		float tranZ = Input.GetAxis ("Vertical");
+		float tranX = Input.GetAxis ("Horizontal");
+//		tranX *= Time.deltaTime;
+//		tranZ *= Time.deltaTime;
+//		for (int i=0; i<transobj.Length; i++) {
+//			transobj[i].transform.Translate(new Vector3(tranX,0,tranZ));
+//		}	
+
+		Debug.Log (tranX);
 	}
 }
