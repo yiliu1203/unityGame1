@@ -46,8 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\script\AxeCollider.cs" />
+     <Compile Include="Assets\script\ThirdPersonCamera.cs" />
+     <Compile Include="Assets\script\ThirdPersonController.cs" />
      <Compile Include="Assets\script\camaTrack.cs" />
-     <Compile Include="Assets\script\input.cs" />
+     <Compile Include="Assets\script\otherInput.cs" />
+     <Compile Include="Assets\script\playerStateLinster.cs" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\NoiseEffectShaderRGB.shader" />

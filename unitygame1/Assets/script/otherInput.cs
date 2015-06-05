@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class input : MonoBehaviour {
+public class otherInput : MonoBehaviour {
 
 	// Use this for initialization
 
