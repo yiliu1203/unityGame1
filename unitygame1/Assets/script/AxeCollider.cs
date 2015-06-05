@@ -14,6 +14,6 @@ public class AxeCollider : MonoBehaviour {
 	}
 	void OnTriggerEnter(Collider collider)
 	{
-		Debug.Log("collider");
+
 	}
 }
