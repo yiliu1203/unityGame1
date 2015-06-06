@@ -1,9 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\AxeCollider.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\ThirdPersonController.cs">
     <Files>
-      <File FileName="Assets\script\otherInput.cs" Line="22" Column="1" />
-      <File FileName="Assets\script\AxeCollider.cs" Line="8" Column="2" />
+      <File FileName="Assets\script\otherInput.cs" Line="24" Column="36" />
+      <File FileName="Assets\script\ThirdPersonCamera.cs" Line="63" Column="1" />
+      <File FileName="Assets\script\ThirdPersonController.cs" Line="335" Column="5" />
+      <File FileName="Assets\script\AxeCollider.cs" Line="40" Column="74" />
+      <File FileName="Assets\script\playerStateLinster.cs" Line="27" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

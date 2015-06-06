@@ -23,6 +23,8 @@ public class ThirdPersonController : MonoBehaviour {
 	
 	private Animation _animation;
 
+	private playerStateLinster playerstate;
+
 
 
 	enum CharacterState 
@@ -101,8 +103,11 @@ public class ThirdPersonController : MonoBehaviour {
 	
 	void Awake ()
 	{
+	
+	
 		moveDirection = transform.TransformDirection(Vector3.forward);
-		
+		playerstate = GameObject.FindWithTag ("scriptObj").GetComponent<playerStateLinster> ();
+		playerstate.setAniState (0);
 		_animation = GetComponent<Animation>();
 		if(!_animation)
 			Debug.Log("The character you would like to control doesn't have animations. Moving her might look weird.");
@@ -389,6 +394,9 @@ public var jumpPoseAnimation : AnimationClip;
 				SendMessage("DidLand", SendMessageOptions.DontRequireReceiver);
 			}
 		}
+		int b = (int)_characterState;
+		//Debug.Log (b);
+		playerstate.setAniState(b);
 	}
 	
 	void  OnControllerColliderHit (ControllerColliderHit hit )
