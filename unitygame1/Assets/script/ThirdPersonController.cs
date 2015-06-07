@@ -308,6 +308,12 @@ public var jumpPoseAnimation : AnimationClip;
 		{
 			lastJumpButtonTime = Time.time;
 		}
+
+		if (playerstate.ani_stat == playerStateLinster.enum_ani_state.Attacking1 ) {
+			Debug.Log("control");
+			isControllable =false;
+		//	return ;
+		}
 		
 		UpdateSmoothedMovementDirection();
 		
@@ -345,6 +351,8 @@ public var jumpPoseAnimation : AnimationClip;
 			{
 				if(controller.velocity.sqrMagnitude < 0.1f) {
 					_animation.CrossFade(idleAnimation.name);
+					_characterState =CharacterState.Idle;
+
 				}
 				else 
 				{
@@ -359,11 +367,14 @@ public var jumpPoseAnimation : AnimationClip;
 					else if(_characterState == CharacterState.Walking) {
 						_animation[walkAnimation.name].speed = Mathf.Clamp(controller.velocity.magnitude, 0.0f, walkMaxAnimationSpeed);
 						_animation.CrossFade(walkAnimation.name);	
+		
+						
 					}
 					
 				}
 			}
 		}
+
 		// ANIMATION sector
 		
 		// Set rotation to the move direction
@@ -396,6 +407,11 @@ public var jumpPoseAnimation : AnimationClip;
 		}
 		int b = (int)_characterState;
 		//Debug.Log (b);
+		if (playerstate.ani_stat == playerStateLinster.enum_ani_state.Attacking1) {
+			Debug.Log("not set ");
+			return;
+		}
+
 		playerstate.setAniState(b);
 	}
 	
