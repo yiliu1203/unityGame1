@@ -29,6 +29,7 @@ public class AxeCollider : MonoBehaviour {
 			gameObj2.GetComponent<MeshRenderer> ().enabled = true;
 			GameObject.FindWithTag ("hammer_in_gound").SetActive (false);
 			playerstate.setToolState((int)playerStateLinster.enum_tool_state.Hammer);
+			GameObject.FindWithTag("Tail").GetComponent<MeshRenderer>().enabled=false;
 		}
 		else if (this.tag == "axe_in_gound") {
 			var gameobj1 = GameObject.FindWithTag ("Partical_sys2");		
@@ -38,6 +39,7 @@ public class AxeCollider : MonoBehaviour {
 			gameObj2.GetComponent<MeshRenderer> ().enabled = true;
 			GameObject.FindWithTag ("axe_in_gound").SetActive (false);
 			playerstate.setToolState((int)playerStateLinster.enum_tool_state.Axe);
+			GameObject.FindWithTag("Tail").GetComponent<MeshRenderer>().enabled=true;
 			
 		}
 

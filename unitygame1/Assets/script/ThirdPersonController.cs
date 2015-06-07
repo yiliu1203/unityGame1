@@ -310,8 +310,9 @@ public var jumpPoseAnimation : AnimationClip;
 		}
 
 		if (playerstate.ani_stat == playerStateLinster.enum_ani_state.Attacking1 ) {
-			Debug.Log("control");
-			isControllable =false;
+			//Debug.Log("control");
+			moveSpeed=0;
+			//isControllable =false;
 		//	return ;
 		}
 		
@@ -466,5 +467,4 @@ public var jumpPoseAnimation : AnimationClip;
 	{
 		gameObject.tag = "Player";
 	}
-	
 }
