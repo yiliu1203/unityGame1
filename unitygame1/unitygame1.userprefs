@@ -1,8 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\RootMotionScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\Monstcheckhit.cs">
     <Files>
-      <File FileName="Assets\script\RootMotionScript.cs" Line="20" Column="4" />
+      <File FileName="Assets\script\camaTrack.cs" Line="61" Column="6" />
+      <File FileName="Assets\script\RolePropertyItem.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\RoleItem.cs" Line="35" Column="34" />
+      <File FileName="Assets\script\AxeCollider.cs" Line="44" Column="4" />
+      <File FileName="Assets\script\Monstcheckhit.cs" Line="18" Column="29" />
+      <File FileName="Assets\script\ThirdPersonController.cs" Line="412" Column="5" />
+      <File FileName="Assets\script\ThirdPersonCamera.cs" Line="55" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

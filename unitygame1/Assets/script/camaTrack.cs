@@ -57,8 +57,8 @@ public class camaTrack : MonoBehaviour {
 			Vector3 tranes =curposition -preposition;
 			preposition =curposition;
 		//	Debug.Log (tranes);
-			transform.LookAt(transobj[0].transform.position);
-			transform.Translate(tranes);
+			//transform.LookAt(transobj[0].transform.position);
+			//transform.Translate(tranes);
 
 		}
 

@@ -409,7 +409,7 @@ public var jumpPoseAnimation : AnimationClip;
 		int b = (int)_characterState;
 		//Debug.Log (b);
 		if (playerstate.ani_stat == playerStateLinster.enum_ani_state.Attacking1) {
-			Debug.Log("not set ");
+		//	Debug.Log("not set ");
 			return;
 		}
 
