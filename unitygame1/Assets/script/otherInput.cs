@@ -12,6 +12,8 @@ public class otherInput : MonoBehaviour {
 	private float tempT = 0;
 	private float animationIncrement = 0.003f;
 
+	public Camera  came;
+	public RaycastHit hitt = new RaycastHit(); 
 	void Start () {
 		playerstate = GameObject.FindWithTag ("scriptObj").GetComponent<playerStateLinster> ();
 		_animation = GameObject.FindWithTag ("Player").GetComponent<Animation> ();
@@ -71,8 +73,8 @@ public class otherInput : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		if ( Input.GetMouseButton(0)&& playerstate.ani_stat!=playerStateLinster.enum_ani_state.Attacking1) {
-			Debug.Log("mouse left down");
+		if ( Input.GetMouseButtonDown(0)&& playerstate.ani_stat!=playerStateLinster.enum_ani_state.Attacking1) {
+
 			_animation.Stop();
 			_animation.CrossFade("attack1");
 
@@ -84,8 +86,17 @@ public class otherInput : MonoBehaviour {
 			//
 
 		}
-		if (Input.GetAxis ("Vertical") < -0.2) {
+		if (Input.GetMouseButtonDown(1)) {
 		//	animation.Stop();
+
+			Ray ray = came.ScreenPointToRay(Input.mousePosition); 
+			Physics.Raycast(ray, out hitt, 100); 
+			//Debug.DrawLine(came.transform.position, ray.direction,Color.red); 
+			if (null != hitt.transform) { 
+				//print(hitt.point);
+				Debug.Log(hitt.collider.gameObject.name);
+
+			}
 		}
 	}
 	IEnumerator WaitForAnimationPlayOver(string animationName)
@@ -94,6 +105,7 @@ public class otherInput : MonoBehaviour {
 		playerstate.setAniState((int)playerStateLinster.enum_ani_state.Attacking1);
 		yield return new WaitForSeconds(_animation[animationName].length);
 		playerstate.setAniState((int)playerStateLinster.enum_ani_state.NoAni);
+
 		//Debug.Log(Time.time);
 
 		//Debug.Log (_animation [animationName].length);

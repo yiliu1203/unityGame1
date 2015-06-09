@@ -4,6 +4,7 @@ using System.Collections;
 public class RootMotionScript : MonoBehaviour {
 
 	// Use this for initialization
+	public Transform hero;
 	void Start () {
 	
 	}
@@ -18,10 +19,16 @@ public class RootMotionScript : MonoBehaviour {
 		
 		if (animator)
 		{
-			Vector3 newPosition = transform.position;
-			newPosition.z +=animator.GetFloat("walkspeed") * Time.deltaTime; 
-			transform.position = newPosition;
-			Debug.Log(animator.GetFloat("walkspeed"));
+			AnimatorStateInfo aniInfo =animator.GetCurrentAnimatorStateInfo(0);
+			if(aniInfo.IsName("Base Layer.walk")){
+				transform.LookAt(hero.transform);
+				Vector3 newPosition = transform.position;
+				transform.position +=transform.forward *Time.deltaTime *animator.GetFloat("walkspeed");
+				//transform.forward);
+				//newPosition.z +=animator.GetFloat("walkspeed") * Time.deltaTime; 
+				//transform.position = newPosition;
+//				Debug.Log(animator.GetFloat("walkspeed"));
+			}
 
 		}
 	}
