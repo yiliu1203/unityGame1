@@ -9,7 +9,7 @@ public class otherInput : MonoBehaviour {
 	public RaycastHit hitt = new RaycastHit(); 
 	public Transform hammer_in_gound;
 	public Transform axe_in_gound;
-
+	public Transform player;
 	private Animation _animation;
 	private playerStateLinster playerstate;
 
@@ -91,25 +91,57 @@ public class otherInput : MonoBehaviour {
 			//
 
 		}
-		if (Input.GetMouseButtonDown(1)) {
+		if (Input.GetMouseButtonDown(1) &&playerstate.ani_stat!=playerStateLinster.enum_ani_state.Attacking1) {
 		//	animation.Stop();
+
+			if(playerstate.tool_stat==playerStateLinster.enum_tool_state.Axe)
+			{
+				if(	axe_in_gound.GetComponent<AxeCollider>().currentState!=AxeCollider.tool_state.Unvisible)
+				{
+					return ;
+				}
+			}
+			if(playerstate.tool_stat==playerStateLinster.enum_tool_state.Hammer)
+			{
+				if(	hammer_in_gound.GetComponent<AxeCollider>().currentState!=AxeCollider.tool_state.Unvisible)
+				{
+					return ;
+				}
+			}
 
 			Ray ray = came.ScreenPointToRay(Input.mousePosition); 
 			Physics.Raycast(ray, out hitt, 100); 
 			//Debug.DrawLine(came.transform.position, ray.direction,Color.red); 
-			if (null != hitt.transform) { 
+
+			if (null != hitt.transform ) {
+
+				Vector3 v1 =hitt.point -player.transform.position;
+				Vector3 v2 =player.transform.forward;
+			
+				if(Vector3.Angle(v1,v2)>20)
+				{
+					return ;
+				}
+
 				//print(hitt.point);
 			//	Debug.Log(hitt.collider.gameObject.name);
+
+				GameObject.FindWithTag ("hammer_in_hand").GetComponent<MeshRenderer> ().enabled = false;
+				GameObject.FindWithTag ("axe_in_hand").GetComponent<MeshRenderer> ().enabled = false;
+				GameObject.FindWithTag ("Tail").GetComponent<MeshRenderer> ().enabled = false;
+
 				if(playerstate.tool_stat ==playerStateLinster.enum_tool_state.Axe)
 				{
-					//GameObject.FindWithTag("axe_in_gound").GetComponent<AxeCollider>().settoolState(2,2);
-
 					axe_in_gound.GetComponent<AxeCollider>().settoolState(2,2);
+					_animation.CrossFade("attack1");
+					StartCoroutine(WaitForAnimationPlayOver("attack1"));
+
 				}
 				else if(playerstate.tool_stat ==playerStateLinster.enum_tool_state.Hammer)
-				{
-				
+				{				
 					hammer_in_gound.GetComponent<AxeCollider>().settoolState(2,1);
+					_animation.CrossFade("attack1");
+					StartCoroutine(WaitForAnimationPlayOver("attack1"));
 				}
 			}
 		}

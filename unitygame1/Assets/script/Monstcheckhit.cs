@@ -15,7 +15,7 @@ public class Monstcheckhit : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider)
 	{
-		Debug.Log("get collider");
-		Debug.Log (collider.name);
+
+		Debug.Log ("collider name "+collider.name);
 	}
 }

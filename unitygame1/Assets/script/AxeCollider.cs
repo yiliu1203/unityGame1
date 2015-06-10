@@ -27,14 +27,16 @@ public class AxeCollider : MonoBehaviour {
 
 		//Debug.Log (currentState);
 		if (currentState == tool_state.PreFlying) {
-
+			display();
 			if(activeTool ==FlyingTool.hammer)
 			{
 				GameObject.FindWithTag ("hammer_in_hand").SetActive(true);
+				GameObject.FindWithTag ("Partical_sys1").transform.GetComponent<ParticleSystem>().enableEmission=true;
 			}
 			else if(activeTool ==FlyingTool.axe)
 			{
 				GameObject.FindWithTag ("axe_in_hand").SetActive(true);
+			GameObject.FindWithTag ("Partical_sys2").GetComponent<ParticleSystem>().enableEmission=true;
 			}
 			RaycastHit hitt = scriptobj.GetComponent<otherInput> ().hitt;
 			startPos = player.position;
@@ -44,21 +46,21 @@ public class AxeCollider : MonoBehaviour {
 			this.transform.position = startPos;
 			this.transform.LookAt (endPos);
 			currentState = tool_state.Flying;
-			display();
+
 
 		}
 		else if (currentState == tool_state.Flying) {
 			Debug.Log("should flying");
-			transform.position = Vector3.Slerp(startPos,endPos,Time.deltaTime);  
+			transform.position = Vector3.Slerp(transform.position,endPos,Time.deltaTime*2);  
 			//transform.Translate(transform.forward *(float)0.01);
 			//transform.position =Vector3.MoveTowards(startPos, endPos, (float)10 * Time.deltaTime);
 			if(Vector3.Distance(this.transform.position,endPos)<0.1)
 			{
 			
-				transform.position =endPos;
-				transform.position +=transform.forward *(float)0.5;
+			//	transform.position =endPos;
+				//transform.position +=transform.forward *(float)0.2;
 				currentState =tool_state.ONGround;
-
+				// GameObject.FindWithTag ("Partical_sys2").GetComponent<ParticleSystem>().enableEmission=true;
 				//transform.GetComponent<ParticleSystem>().enableEmission =true;
 
 			}
@@ -81,6 +83,8 @@ public class AxeCollider : MonoBehaviour {
 	{
 		GameObject.FindWithTag ("hammer_in_hand").GetComponent<MeshRenderer> ().enabled = false;
 		GameObject.FindWithTag ("axe_in_hand").GetComponent<MeshRenderer> ().enabled = false;
+		GameObject.FindWithTag ("Tail").GetComponent<MeshRenderer> ().enabled = false;
+
 		//Debug.Log (this.tag);
 		if (currentState == tool_state.ONGround && collider.name == "dwarf_07") {
 			Debug.Log("shoun on gound");
