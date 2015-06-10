@@ -4,6 +4,12 @@ using System.Collections;
 public class otherInput : MonoBehaviour {
 
 	// Use this for initialization
+
+	public Camera  came;
+	public RaycastHit hitt = new RaycastHit(); 
+	public Transform hammer_in_gound;
+	public Transform axe_in_gound;
+
 	private Animation _animation;
 	private playerStateLinster playerstate;
 
@@ -12,8 +18,7 @@ public class otherInput : MonoBehaviour {
 	private float tempT = 0;
 	private float animationIncrement = 0.003f;
 
-	public Camera  came;
-	public RaycastHit hitt = new RaycastHit(); 
+
 	void Start () {
 		playerstate = GameObject.FindWithTag ("scriptObj").GetComponent<playerStateLinster> ();
 		_animation = GameObject.FindWithTag ("Player").GetComponent<Animation> ();
@@ -94,8 +99,18 @@ public class otherInput : MonoBehaviour {
 			//Debug.DrawLine(came.transform.position, ray.direction,Color.red); 
 			if (null != hitt.transform) { 
 				//print(hitt.point);
-				Debug.Log(hitt.collider.gameObject.name);
+			//	Debug.Log(hitt.collider.gameObject.name);
+				if(playerstate.tool_stat ==playerStateLinster.enum_tool_state.Axe)
+				{
+					//GameObject.FindWithTag("axe_in_gound").GetComponent<AxeCollider>().settoolState(2,2);
 
+					axe_in_gound.GetComponent<AxeCollider>().settoolState(2,2);
+				}
+				else if(playerstate.tool_stat ==playerStateLinster.enum_tool_state.Hammer)
+				{
+				
+					hammer_in_gound.GetComponent<AxeCollider>().settoolState(2,1);
+				}
 			}
 		}
 	}
