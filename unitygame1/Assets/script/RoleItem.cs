@@ -6,7 +6,10 @@ public class RoleItem : MonoBehaviour
 	public UILabel txtName;
 	public UISprite bar;
 	public UILabel txtBlood;
-
+	public int fullXue=150;
+	public int curXue=50;
+	private int height =13;
+	private int yoffset =-7;
 	/// <summary>
 	/// 血条宽
 	/// </summary>
@@ -24,9 +27,12 @@ public class RoleItem : MonoBehaviour
 		this.uiPanel = this.GetComponentInParent<UIPanel> ();
 	}
 
-	/// <summary>
-	/// 更新血条深度
-	/// </summary>
+
+	void Start()
+	{
+
+		this.bar.SetRect (-fullXue/2, yoffset, curXue, height);
+	}
 
 	public void ChangeDepth(int depth)
 	{
@@ -34,6 +40,10 @@ public class RoleItem : MonoBehaviour
 	}
 	public void setbarwide(int wide)
 	{
-		this.bar.width = wide;
+		this.bar.SetRect (-fullXue, yoffset, wide, height);
+	}
+	public void subRandomXue()
+	{
+
 	}
 }

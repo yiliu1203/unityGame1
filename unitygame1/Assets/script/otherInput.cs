@@ -85,7 +85,7 @@ public class otherInput : MonoBehaviour {
 
 			//Debug.Log("test");
 			//Debug.Log(Time.time);
-			StartCoroutine(WaitForAnimationPlayOver("attack1"));		// 注意这里startcoroutine的区别
+			StartCoroutine(WaitForAnimationPlayOver("attack1",0));		// 注意这里startcoroutine的区别
 			//WaitForAnimationPlayOver("attack1");
 		//	Debug.Log(Time.time);
 			//
@@ -134,22 +134,22 @@ public class otherInput : MonoBehaviour {
 				{
 					axe_in_gound.GetComponent<AxeCollider>().settoolState(2,2);
 					_animation.CrossFade("attack1");
-					StartCoroutine(WaitForAnimationPlayOver("attack1"));
+					StartCoroutine(WaitForAnimationPlayOver("attack1",1));
 
 				}
 				else if(playerstate.tool_stat ==playerStateLinster.enum_tool_state.Hammer)
 				{				
 					hammer_in_gound.GetComponent<AxeCollider>().settoolState(2,1);
 					_animation.CrossFade("attack1");
-					StartCoroutine(WaitForAnimationPlayOver("attack1"));
+					StartCoroutine(WaitForAnimationPlayOver("attack1",1));
 				}
 			}
 		}
 	}
-	IEnumerator WaitForAnimationPlayOver(string animationName)
+	IEnumerator WaitForAnimationPlayOver(string animationName,int attackstyle)
 	{
 		//Debug.Log(Time.time);
-		playerstate.setAniState((int)playerStateLinster.enum_ani_state.Attacking1);
+		playerstate.setAniState((int)(playerStateLinster.enum_ani_state.Attacking1+attackstyle));
 		yield return new WaitForSeconds(_animation[animationName].length);
 		playerstate.setAniState((int)playerStateLinster.enum_ani_state.NoAni);
 
