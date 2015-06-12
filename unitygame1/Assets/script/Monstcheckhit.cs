@@ -11,11 +11,11 @@ public class Monstcheckhit : MonoBehaviour {
 	public Transform hammer_inGround;
 	public AxeCollider axe_collider;
 	public AxeCollider hammer_collider;
-
+	public RolePropertyItem rolePropertyItem;
 	private  Animator _animator;
 	private AnimatorStateInfo _animatorinfo;
 
-	public enum State{idle,walk,attacking,hitted};
+	public enum State{idle,walk,attacking,hitted,depth};
 	public State curState =State.idle;
 	void Start () {
 		_animator = transform.GetComponent<Animator> ();
@@ -25,6 +25,10 @@ public class Monstcheckhit : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (curState == State.depth) {
+			return ;
+		}
 
 		_animatorinfo = _animator.GetCurrentAnimatorStateInfo (0);
 
@@ -36,11 +40,16 @@ public class Monstcheckhit : MonoBehaviour {
 				_animator.SetBool("walk2gethit",true);
 				curState =State.hitted;
 				Debug.Log("getigt");
-
+				rolePropertyItem.subXue();
 			}
 		}
 		if (playerstate.ani_stat == playerStateLinster.enum_ani_state.Idle||playerstate.ani_stat == playerStateLinster.enum_ani_state.NoAni) {
 			curState =State.idle;
+		}
+
+		if (rolePropertyItem.getCurXue() < 0) {
+			curState =State.depth;
+			StartCoroutine( WaitFordepthPlayOver());
 		}
 
 	}
@@ -49,6 +58,19 @@ public class Monstcheckhit : MonoBehaviour {
 	{
 
 		Debug.Log ("collider name "+collider.name);
+	}
+
+	IEnumerator WaitFordepthPlayOver()
+	{
+		//Debug.Log(Time.time);
+	
+		yield return new WaitForSeconds(3);
+		Debug.Log("wait for 3 second");
+		this.gameObject.SetActive (false);
+		//Destroy (this.gameObject);
+		//playerstate.setAniState((int)playerStateLinster.enum_ani_state.NoAni);
+		
+
 	}
 
 

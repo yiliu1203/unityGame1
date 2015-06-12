@@ -22,7 +22,6 @@ public class RolePropertyItem : MonoBehaviour
 			roleNameObject.transform.localScale = new Vector3(1f, 1f, 1f);
 			roleNameObject.transform.position = this.transform.InverseTransformPoint(this.transform.position);
 			roleNameObject.transform.parent = this.itemRoot.transform;
-
 			this.roleItem = roleNameObject.GetComponent<RoleItem>();
 		}
 	}
@@ -59,5 +58,20 @@ public class RolePropertyItem : MonoBehaviour
 
 			return uicama.ScreenToWorldPoint(Camera.main.WorldToScreenPoint(position));
 
+	}
+
+	public void subXue( )
+	{
+		roleItem.subDownRandomXue ();
+	}
+	public int getCurXue()
+	{
+		return roleItem.curXue;
+	}
+	public bool shouldStandup()
+	{
+		return roleItem.curXue % 3 == 0;
+		//return roleItem.curXue < (roleItem.fullXue / 2 + 5) && (roleItem.curXue > roleItem.fullXue - 5);
+		//return true;
 	}
 }

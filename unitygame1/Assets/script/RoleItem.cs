@@ -7,7 +7,7 @@ public class RoleItem : MonoBehaviour
 	public UISprite bar;
 	public UILabel txtBlood;
 	public int fullXue=150;
-	public int curXue=50;
+	public int curXue=150;
 	private int height =13;
 	private int yoffset =-7;
 	/// <summary>
@@ -30,8 +30,7 @@ public class RoleItem : MonoBehaviour
 
 	void Start()
 	{
-
-		this.bar.SetRect (-fullXue/2, yoffset, curXue, height);
+		this.bar.SetRect (-75, -7, curXue, height);
 	}
 
 	public void ChangeDepth(int depth)
@@ -40,10 +39,14 @@ public class RoleItem : MonoBehaviour
 	}
 	public void setbarwide(int wide)
 	{
-		this.bar.SetRect (-fullXue, yoffset, wide, height);
+		this.bar.SetRect (-75, yoffset, wide, height);
 	}
-	public void subRandomXue()
+	public void subDownRandomXue()
 	{
-
+		int num = Random.Range (10, 15);
+		curXue -= num;
+		setbarwide (curXue);
+		Debug.Log (curXue);	
 	}
+
 }
