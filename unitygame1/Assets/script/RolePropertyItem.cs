@@ -9,7 +9,7 @@ public class RolePropertyItem : MonoBehaviour
 
 	protected RoleItem roleItem;
 	public Camera uicama;
-
+	private GameObject roleNameObject;
 
 	void Awake()
 	{
@@ -18,7 +18,7 @@ public class RolePropertyItem : MonoBehaviour
 
 		if (gameObject != null) 
 		{
-			GameObject roleNameObject = (GameObject)Instantiate(gameObject);
+			 roleNameObject = (GameObject)Instantiate(gameObject);
 			roleNameObject.transform.localScale = new Vector3(1f, 1f, 1f);
 			roleNameObject.transform.position = this.transform.InverseTransformPoint(this.transform.position);
 			roleNameObject.transform.parent = this.itemRoot.transform;
@@ -73,5 +73,9 @@ public class RolePropertyItem : MonoBehaviour
 		return roleItem.curXue % 3 == 0;
 		//return roleItem.curXue < (roleItem.fullXue / 2 + 5) && (roleItem.curXue > roleItem.fullXue - 5);
 		//return true;
+	}
+	public void setunvisible()
+	{
+		roleNameObject.SetActive (false);
 	}
 }

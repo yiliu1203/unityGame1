@@ -78,9 +78,9 @@ public class AxeCollider : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider)
 	{
-	//	GameObject.FindWithTag ("hammer_in_hand").GetComponent<MeshRenderer> ().enabled = false;
-	//	GameObject.FindWithTag ("axe_in_hand").GetComponent<MeshRenderer> ().enabled = false;
-	//	GameObject.FindWithTag ("Tail").GetComponent<MeshRenderer> ().enabled = false;
+		GameObject.FindWithTag ("hammer_in_hand").GetComponent<MeshRenderer> ().enabled = false;
+		GameObject.FindWithTag ("axe_in_hand").GetComponent<MeshRenderer> ().enabled = false;
+		GameObject.FindWithTag ("Tail").GetComponent<MeshRenderer> ().enabled = false;
 
 		//Debug.Log (this.tag);
 		if (currentState == tool_state.ONGround && collider.name == "dwarf_07") {

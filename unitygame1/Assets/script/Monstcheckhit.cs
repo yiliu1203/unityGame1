@@ -29,8 +29,17 @@ public class Monstcheckhit : MonoBehaviour {
 		if (curState == State.depth) {
 			return ;
 		}
-
+		StartCoroutine( attackPer2second());
 		_animatorinfo = _animator.GetCurrentAnimatorStateInfo (0);
+//		if (curState !=State.attacking && curState!=State.hitted && _animatorinfo.IsName ("Base Layer.attack1")) {
+//			if (Vector3.Distance (transform.position, player.position) < 0.3) 
+//			{
+//				_animator.SetBool("idle2attack",false);
+//				Debug.Log("monster attack");
+//				curState =State.attacking;
+//			}
+//
+//		}
 
 		if ( curState !=State.hitted&&playerstate.ani_stat == playerStateLinster.enum_ani_state.Attacking1) {
 
@@ -67,10 +76,27 @@ public class Monstcheckhit : MonoBehaviour {
 		yield return new WaitForSeconds(3);
 		Debug.Log("wait for 3 second");
 		this.gameObject.SetActive (false);
+		rolePropertyItem.setunvisible ();
 		//Destroy (this.gameObject);
 		//playerstate.setAniState((int)playerStateLinster.enum_ani_state.NoAni);
-		
+	}
 
+	IEnumerator attackPer2second()
+	{
+		yield return new WaitForSeconds (5);
+
+		if (curState!=State.attacking && curState!=State.hitted&& Vector3.Distance (transform.position, player.position) < 0.3) {
+			_animator.SetBool("idle2attack",true);
+			_animator.SetBool("idle2walk",false);
+			curState =State.attacking;
+			yield return new WaitForSeconds(1);
+			if(Vector3.Distance (transform.position, player.position) < 0.3)
+			{
+				Debug.Log("monster hit");
+			}
+
+
+		}
 	}
 
 
