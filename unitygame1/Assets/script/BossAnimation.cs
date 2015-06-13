@@ -7,9 +7,10 @@ public class BossAnimation : MonoBehaviour {
 	public playerStateLinster playerstate;
 	public enum  BossState {idle=0,walk,attack,gethit,noani}
 	public BossState bossstate=BossState.noani;
-	private string[] aniName={"idle_2","walk_2","attack_2","gethit_2"};
+	private string[] aniName={"idle_2","walk_2","attack_3","gethit_2"};
 	private Animation _animation;
 	private bool hasattacked = false;
+	private bool haswalkredirect=false;
 	// Use this for initialization
 	void Start () {
 		_animation = this.GetComponent<Animation> ();
@@ -28,21 +29,33 @@ public class BossAnimation : MonoBehaviour {
 				}
 			}
 			int temp =Random.Range(0,100);
-			if(temp%4==0)
+			if(temp<=10)
 			{
 				StartCoroutine( WaitForAnimationPlayOver((int)BossState.idle));
 			}
-			else if(temp%4==1)
+			else if(temp<=50 && temp>20)
 			{
 				StartCoroutine( WaitForAnimationPlayOver((int)BossState.walk));
 			}
-			else if(temp%4==2)
+			else if(temp<=70&& temp>50)
 			{
 				StartCoroutine( WaitForAnimationPlayOver((int)BossState.attack));
 			}
 		}
 		if (bossstate == BossState.walk) {
-			transform.LookAt(player.position);
+			if(!haswalkredirect)
+			{
+				//transform.LookAt(player.position);
+				//haswalkredirect =true;
+				float temp =Vector3.Angle(transform.forward,player.position -transform.position);
+				if(Vector3.Dot(transform.forward,player.position-transform.position)>0)
+				{
+					transform.Rotate(0,-temp,0);
+				}
+				else {transform.Rotate(0,temp,0);}
+				haswalkredirect =true;
+			}
+
 			transform.position +=transform.forward *Time.deltaTime;
 		}
 		if(bossstate==BossState.attack)
@@ -59,9 +72,12 @@ public class BossAnimation : MonoBehaviour {
 	{
 		//Debug.Log(Time.time);
 		bossstate =(BossState) attackstyle;
+		_animation.Stop ();
+		_animation.CrossFade (aniName [attackstyle]);
 		yield return new WaitForSeconds(_animation[aniName[attackstyle]].length);
 		bossstate = BossState.noani;
 		hasattacked = false;
+		haswalkredirect = false;
 		//playerstate.setAniState((int)playerStateLinster.enum_ani_state.NoAni);
 		
 		//Debug.Log(Time.time);
