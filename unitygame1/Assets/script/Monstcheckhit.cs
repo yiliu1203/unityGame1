@@ -29,18 +29,25 @@ public class Monstcheckhit : MonoBehaviour {
 		if (curState == State.depth) {
 			return ;
 		}
-		StartCoroutine( attackPer2second());
-		_animatorinfo = _animator.GetCurrentAnimatorStateInfo (0);
-//		if (curState !=State.attacking && curState!=State.hitted && _animatorinfo.IsName ("Base Layer.attack1")) {
-//			if (Vector3.Distance (transform.position, player.position) < 0.3) 
-//			{
-//				_animator.SetBool("idle2attack",false);
-//				Debug.Log("monster attack");
-//				curState =State.attacking;
-//			}
-//
-//		}
+	
+		//StartCoroutine (attackPer2second ());
+		if(curState!=State.attacking && curState!=State.hitted&& Vector3.Distance (transform.position, player.position) < 0.3)
+		{
+			_animator.SetBool("idle2attack",true);
+			_animator.SetBool("idle2walk",false);
+			curState =State.attacking;
+				
+				player.animation["hit"].speed=(float)0.5;
+			player.animation.CrossFade("hit");
+				playerstate .xueDownRandom();
 
+
+		}
+
+		_animatorinfo = _animator.GetCurrentAnimatorStateInfo (0);
+		if (!_animator.GetBool("idle2attack") &&!_animator.GetBool("idle2gethit")  &&_animatorinfo.IsName ("Base Layer.idle")) {
+			curState =State.idle;
+		}
 		if ( curState !=State.hitted&&playerstate.ani_stat == playerStateLinster.enum_ani_state.Attacking1) {
 
 			if(Vector3.Distance(player.position,transform.position)<(float)0.3 ||Vector3.Distance(player.position,transform.position)<1&&Vector3.Angle(player.transform.forward,transform.position-player.transform.position)<30)
@@ -52,9 +59,10 @@ public class Monstcheckhit : MonoBehaviour {
 				rolePropertyItem.subXue();
 			}
 		}
-		if (playerstate.ani_stat == playerStateLinster.enum_ani_state.Idle||playerstate.ani_stat == playerStateLinster.enum_ani_state.NoAni) {
-			curState =State.idle;
-		}
+		//if ( curState!=State.attacking&&playerstate.ani_stat == playerStateLinster.enum_ani_state.Idle||playerstate.ani_stat == playerStateLinster.enum_ani_state.NoAni) {
+		//	curState =State.idle;
+		//	Debug.Log("..........");
+		//}
 
 		if (rolePropertyItem.getCurXue() < 0) {
 			curState =State.depth;
@@ -93,9 +101,10 @@ public class Monstcheckhit : MonoBehaviour {
 			if(Vector3.Distance (transform.position, player.position) < 0.3)
 			{
 				Debug.Log("monster hit");
+				player.animation["hit"].speed=(float)0.5;
+				player.animation.CrossFade("hit");
+				playerstate .xueDownRandom();
 			}
-
-
 		}
 	}
 

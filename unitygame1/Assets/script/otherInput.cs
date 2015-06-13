@@ -26,6 +26,8 @@ public class otherInput : MonoBehaviour {
 		AnimationState attack1_state =_animation["attack1"];
 		attack1_state.layer = 1;
 		attack1_state.weight = 1;
+		_animation ["hit"].layer = 1;
+		_animation ["hit"].weight = 1;
 		//attack1_state.enabled = true;
 	}
 
