@@ -27,7 +27,7 @@ public class BossAnimation : MonoBehaviour {
 	void Update () {
 		xuekuang.SetRect (25, -8, curXue, 15);
 		xuelable.text = curXue.ToString();
-
+		Debug.Log ("boss " + bossstate);
 		if(playerstate.ani_stat==playerStateLinster.enum_ani_state.Attacking1&& bossstate!=BossState.gethit)
 		{
 			if(Vector3.Distance(player.position,transform.position)<(float)0.5&& Vector3.Angle(player.transform.forward,transform.position-player.transform.position)<60)
@@ -48,17 +48,21 @@ public class BossAnimation : MonoBehaviour {
 			//	}
 			//}
 			int temp =Random.Range(0,100);
-			if(temp<=10 && Vector3.Distance(player.position,transform.position)>2)
+			if( temp <10 &&Vector3.Distance(player.position,transform.position)>3)
 			{
 				StartCoroutine( WaitForAnimationPlayOver((int)BossState.idle));
 			}
-			else if(temp<=40 && temp>20 && Vector3.Distance(player.position,transform.position)>2)
+			else if(temp<=40  && Vector3.Distance(player.position,transform.position)>1)
 			{
 				StartCoroutine( WaitForAnimationPlayOver((int)BossState.walk));
 			}
-			else if(Vector3.Distance(player.position,transform.position)<1)
+			else if( Vector3.Distance(player.position,transform.position)<1)
 			{
 				StartCoroutine( WaitForAnimationPlayOver((int)BossState.attack));
+			}
+			else {
+				//StartCoroutine( WaitForAnimationPlayOver((int)BossState.idle));
+			//	bossstate =BossState.noani;
 			}
 		}
 		if (bossstate == BossState.walk) {
@@ -67,16 +71,17 @@ public class BossAnimation : MonoBehaviour {
 				//transform.LookAt(player.position);
 				//haswalkredirect =true;
 				float temp =Vector3.Angle(transform.forward,player.position -transform.position);
-				if(Vector3.Dot(transform.forward,player.position-transform.position)>0)
+				if(Vector3.Cross(transform.forward,player.position-transform.position).y>0)
 				{
-					transform.Rotate(0,-temp,0);
+					transform.Rotate(0,temp,0);
 				}
-				else {transform.Rotate(0,temp,0);}
+				else {transform.Rotate(0,-temp,0);}
 				haswalkredirect =true;
 			}
 			Vector3 tempv =transform.forward;
-			tempv.y=0;
+		//	tempv.y=0;
 			transform.position +=tempv *Time.deltaTime;
+			//transform.position =Vector3.MoveTowards(transform.position, player.position,   Time.deltaTime);
 		}
 		if(bossstate==BossState.attack)
 		{
