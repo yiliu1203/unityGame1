@@ -27,16 +27,7 @@ class TronTrailSection
 public class WeaponTrail : MonoBehaviour {
 
 
-    /*
-     Generates a trail that is always facing upwards using the scriptable mesh interface. (This is from the Tron Trails in Unity)
-     vertex colors and uv's are generated similar to the builtin Trail Renderer. But it DOES NOT RUN ITSELF LIKE THE TRAIL RENDERER. (there is no update method)
-     To use it
-     1. Create an empty game object (your weapon), with it's y axis pointing along the weapons blade.
-     2. Attach this script and a MeshRenderer
-     3. Then assign a particle material to the mesh renderer
-     4. Call it's Itterate method everytime you sample the animation (if you want a smooth trail this should be more than once a frame)
-     5. Call it's UpdateTrail method once a frame to rebuild the mesh
-    */
+   
     #region Public
     public float height = 2.0f;
     public float time = 2.0f;

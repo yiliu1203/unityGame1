@@ -28,6 +28,9 @@ public class otherInput : MonoBehaviour {
 		attack1_state.weight = 1;
 		_animation ["hit"].layer = 1;
 		_animation ["hit"].weight = 1;
+
+		GameObject.FindWithTag ("winpic").GetComponent<UISprite> ().enabled = false;
+		GameObject.FindWithTag ("losepic").GetComponent<UISprite> ().enabled = false;
 		//attack1_state.enabled = true;
 	}
 
@@ -70,14 +73,7 @@ public class otherInput : MonoBehaviour {
 	}
 
 
-	void OnGUI()
-	{
-//		if (GUI.Button (new Rect (50, 50, 50, 50), "attack")) {
-//			toattack = true;
-//		} else {
-//			toattack =false;
-//		}
-	}
+
 	// Update is called once per frame
 	void Update () {
 		if ( Input.GetMouseButtonDown(0)&& playerstate.ani_stat!=playerStateLinster.enum_ani_state.Attacking1) {
@@ -160,4 +156,18 @@ public class otherInput : MonoBehaviour {
 		//Debug.Log (_animation [animationName].length);
 	
 	}
+
+	public void togameover(int type )
+	{
+		if (type == 0) {
+
+			GameObject.FindWithTag ("winpic").GetComponent<UISprite> ().enabled = true;
+			Time.timeScale =1;
+		}
+		if (type == 1) {
+			GameObject.FindWithTag ("losepic").GetComponent<UISprite> ().enabled = true;
+			Time.timeScale =1;
+		}
+	}
+
 }

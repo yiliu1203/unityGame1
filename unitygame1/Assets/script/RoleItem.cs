@@ -10,6 +10,7 @@ public class RoleItem : MonoBehaviour
 	public int curXue=150;
 	private int height =13;
 	private int yoffset =-7;
+	 playerStateLinster state;
 	/// <summary>
 	/// 血条宽
 	/// </summary>
@@ -25,12 +26,14 @@ public class RoleItem : MonoBehaviour
 	void Awake()
 	{
 		this.uiPanel = this.GetComponentInParent<UIPanel> ();
+
 	}
 
 
 	void Start()
 	{
 		this.bar.SetRect (-75, -7, curXue, height);
+		state = GameObject.FindWithTag ("scriptObj").GetComponent<playerStateLinster> ();
 	}
 
 	public void ChangeDepth(int depth)
@@ -40,13 +43,21 @@ public class RoleItem : MonoBehaviour
 	public void setbarwide(int wide)
 	{
 		this.bar.SetRect (-75, yoffset, wide, height);
+		this.txtBlood.text = wide.ToString ();
 	}
 	public void subDownRandomXue()
 	{
-		int num = Random.Range (10, 15);
+		int temp = 0;
+		temp =(int)state.tool_stat * 5;
+		int num = Random.Range (20, 30) +temp;
 		curXue -= num;
+		if (curXue < 0) {
+			curXue =0;
+			//Time.timeScale =0;
+			//GameObject.FindWithTag("scriptObj").GetComponent<otherInput>().togameover(0);
+		}
 		setbarwide (curXue);
-		Debug.Log (curXue);	
+		//Debug.Log (curXue);	
 	}
 
 }

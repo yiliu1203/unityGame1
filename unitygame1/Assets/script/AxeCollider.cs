@@ -6,6 +6,8 @@ public class AxeCollider : MonoBehaviour {
 	// Use this for initialization
 	public enum tool_state{ONGround=0,Unvisible,PreFlying,Flying};
 	public tool_state currentState=tool_state.ONGround;
+	public RolePropertyItem rolepropertyitem;
+	public BossAnimation  bossstate;
 	private Transform scriptobj;
 	private GameObject gameobj3;
 	private playerStateLinster playerstate;
@@ -14,6 +16,7 @@ public class AxeCollider : MonoBehaviour {
 	private Transform player;
 	public  enum FlyingTool{None=0,hammer=1, axe};
 	public  FlyingTool activeTool=FlyingTool.None;
+
 	
 	void Start () {
 		scriptobj = GameObject.FindWithTag ("scriptObj").transform;
@@ -78,12 +81,15 @@ public class AxeCollider : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider)
 	{
-		GameObject.FindWithTag ("hammer_in_hand").GetComponent<MeshRenderer> ().enabled = false;
-		GameObject.FindWithTag ("axe_in_hand").GetComponent<MeshRenderer> ().enabled = false;
-		GameObject.FindWithTag ("Tail").GetComponent<MeshRenderer> ().enabled = false;
+
 
 		//Debug.Log (this.tag);
 		if (currentState == tool_state.ONGround && collider.name == "dwarf_07") {
+
+			GameObject.FindWithTag ("hammer_in_hand").GetComponent<MeshRenderer> ().enabled = false;
+			GameObject.FindWithTag ("axe_in_hand").GetComponent<MeshRenderer> ().enabled = false;
+			GameObject.FindWithTag ("Tail").GetComponent<MeshRenderer> ().enabled = false;
+
 			Debug.Log("shoun on gound");
 			if (this.tag == "hammer_in_gound") {
 				var gameobj1 = GameObject.FindWithTag ("Partical_sys1");
@@ -110,6 +116,18 @@ public class AxeCollider : MonoBehaviour {
 			}
 			currentState =tool_state.Unvisible;
 		}
+
+		if (currentState == tool_state.Flying) {
+			if(collider.name =="skeleton_archer")
+			{
+				rolepropertyitem.subXue();
+			}
+			if(collider.name =="bruce")
+			{
+				bossstate .subxue();
+			}
+		}
+
 	}
 
 	void disappear()

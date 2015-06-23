@@ -16,7 +16,7 @@ public class BossAnimation : MonoBehaviour {
 	public int fullXue=200;
 	public UISprite  xuekuang;
 	public UILabel xuelable;
-
+	public static int smallMonsterdie=0;
 	// Use this for initialization
 	void Start () {
 		_animation = this.GetComponent<Animation> ();
@@ -27,12 +27,19 @@ public class BossAnimation : MonoBehaviour {
 	void Update () {
 		xuekuang.SetRect (25, -8, curXue, 15);
 		xuelable.text = curXue.ToString();
-		Debug.Log ("boss " + bossstate);
+		if (curXue <= 0) {
+		
+			GameObject.FindWithTag("scriptObj").GetComponent<otherInput>().togameover(0);
+			Time.timeScale =0;
+
+		}
+	//	Debug.Log ("boss " + bossstate);
 		if(playerstate.ani_stat==playerStateLinster.enum_ani_state.Attacking1&& bossstate!=BossState.gethit)
 		{
-			if(Vector3.Distance(player.position,transform.position)<(float)0.5&& Vector3.Angle(player.transform.forward,transform.position-player.transform.position)<60)
+			if(smallMonsterdie==2&& Vector3.Distance(player.position,transform.position)<(float)0.5&& Vector3.Angle(player.transform.forward,transform.position-player.transform.position)<60)
 			{
 				curXue -=Random.Range(20,25);
+				curXue -=(int)playerstate.tool_stat *5;
 				StartCoroutine( WaitForAnimationPlayOver((int)BossState.gethit));
 				//Debug.Log ("boss xue down");
 			}
@@ -79,7 +86,7 @@ public class BossAnimation : MonoBehaviour {
 				haswalkredirect =true;
 			}
 			Vector3 tempv =transform.forward;
-		//	tempv.y=0;
+			tempv.y=0;
 			transform.position +=tempv *Time.deltaTime;
 			//transform.position =Vector3.MoveTowards(transform.position, player.position,   Time.deltaTime);
 		}
@@ -93,6 +100,11 @@ public class BossAnimation : MonoBehaviour {
 				hasattacked =true;
 			}
 		}
+	}
+	public void  subxue()
+	{
+		curXue -=Random.Range(20,25);
+		curXue -=(int)playerstate.tool_stat *5;
 	}
 	IEnumerator WaitForAnimationPlayOver(int attackstyle)
 	{

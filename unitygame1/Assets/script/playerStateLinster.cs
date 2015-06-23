@@ -42,6 +42,8 @@ public class playerStateLinster : MonoBehaviour {
 	{
 		curXue -= num;
 		if (curXue <= 0) {
+			GameObject.FindWithTag("scriptObj").GetComponent<otherInput>().togameover(1);
+			Time.timeScale =0;
 			curXue =0;
 			setCurXueuang();
 		}

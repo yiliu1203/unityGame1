@@ -64,8 +64,9 @@ public class Monstcheckhit : MonoBehaviour {
 		//	Debug.Log("..........");
 		//}
 
-		if (rolePropertyItem.getCurXue() < 0) {
+		if (rolePropertyItem.getCurXue() <= 0) {
 			curState =State.depth;
+			BossAnimation.smallMonsterdie++;
 			StartCoroutine( WaitFordepthPlayOver());
 		}
 

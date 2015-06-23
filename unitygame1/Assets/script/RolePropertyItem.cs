@@ -60,7 +60,7 @@ public class RolePropertyItem : MonoBehaviour
 
 	}
 
-	public void subXue( )
+	public void subXue()
 	{
 		roleItem.subDownRandomXue ();
 	}

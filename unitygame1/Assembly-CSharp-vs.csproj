@@ -194,6 +194,8 @@
      <Compile Include="Assets\script\camaTrack.cs" />
      <Compile Include="Assets\script\nguiClick.cs" />
      <Compile Include="Assets\script\otherInput.cs" />
+     <Compile Include="Assets\script\outScene.cs" />
+     <Compile Include="Assets\script\overClick.cs" />
      <Compile Include="Assets\script\playerStateLinster.cs" />
      <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\Standard Assets\Image Effects (Pro Only)\_Sources\Shaders\_BloomAndFlares\BlendOneOne.shader" />
